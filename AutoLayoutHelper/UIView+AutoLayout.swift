@@ -207,6 +207,11 @@ public extension UIView {
 		addConstraint(aspect)
 	}
 	
+	public func applySameSizeToSubviews(views: [UIView]) {
+		applySameHeigthToSubviews(views)
+		applySameWidthToSubviews(views)
+	}
+	
 	public func applySameHeigthToSubviews(views: [UIView]) {
 		if !haveSameSuperView(views) {
 			print ("expect to have the same superView")
