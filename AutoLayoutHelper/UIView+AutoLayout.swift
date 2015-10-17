@@ -16,6 +16,32 @@ public extension UIView {
 		case Right
 	}
 	
+	public enum Align {
+		case AboveMatchingLeft
+		case AboveMatchingCenter
+		case AboveMatchingRight
+		case BelowMatchingLeft
+		case BelowMatchingCenter
+		case BelowMatchingRight
+		case LeftMatchingTop
+		case LeftMatchingCenter
+		case LeftMatchingBottom
+		case RightMatchingTop
+		case RightMatchingCenter
+		case RightMatchingBottom
+	}
+	
+	public func centerInSuperView() {
+		guard let mySuperView = superview else {
+			print("\(self) expected to be embedded in superview")
+			return
+		}
+
+		let centerX = NSLayoutConstraint(item: self, attribute: .CenterX, relatedBy: .Equal, toItem: mySuperView, attribute: .CenterX, multiplier: 1.0, constant: 0)
+		let centerY = NSLayoutConstraint(item: self, attribute: .CenterY, relatedBy: .Equal, toItem: mySuperView, attribute: .CenterY, multiplier: 1.0, constant: 0)
+		mySuperView.addConstraints([centerX, centerY])
+	}
+	
 	public func fillSuperView() {
 		self.fillSuperViewWithPadding(top: 0, left: 0, bottom: 0, right: 0)
 	}
@@ -43,7 +69,10 @@ public extension UIView {
 	}
 	
 	public func anchorInCorner(corner: Corner, xPad: CGFloat, yPad: CGFloat) {
-		guard let mySuperView = superview else { return }
+		guard let mySuperView = superview else {
+			print("\(self) expected to be embedded in superview")
+			return
+		}
 
 		translatesAutoresizingMaskIntoConstraints = false
 		let left = NSLayoutConstraint(item: self, attribute: .Leading, relatedBy: .Equal, toItem: mySuperView, attribute: .Leading, multiplier: 1.0, constant: xPad)
@@ -64,7 +93,10 @@ public extension UIView {
 	}
 	
 	public func anchorToEgde(egde: Egde, padding: CGFloat = 0) {
-		guard let mySuperView = superview else { return }
+		guard let mySuperView = superview else {
+			print("\(self) expected to be embedded in superview")
+			return
+		}
 		
 		translatesAutoresizingMaskIntoConstraints = false
 		let left = NSLayoutConstraint(item: self, attribute: .Leading, relatedBy: .Equal, toItem: mySuperView, attribute: .Leading, multiplier: 1.0, constant: padding)
@@ -92,7 +124,10 @@ public extension UIView {
 	}
 	
 	public func anchorAndFillEdge(egde: Egde, xPad: CGFloat, yPad: CGFloat) {
-		guard let mySuperView = superview else { return }
+		guard let mySuperView = superview else {
+			print("\(self) expected to be embedded in superview")
+			return
+		}
 		
 		translatesAutoresizingMaskIntoConstraints = false
 		let left = NSLayoutConstraint(item: self, attribute: .Leading, relatedBy: .Equal, toItem: mySuperView, attribute: .Leading, multiplier: 1.0, constant: xPad)
@@ -112,5 +147,59 @@ public extension UIView {
 		}
 	}
 	
+	public func alignToAnchor(anchor: UIView, align: Align, padding: CGFloat) {
+		guard let ourSuperView = superview else {
+			print("\(self) expected to be embedded in superview")
+			return
+		}
+		
+		guard let otherSuperView = anchor.superview else {
+			print("\(anchor) expected to be embedded in superview")
+			return
+		}
+		
+		if ourSuperView != otherSuperView {
+			print("\(anchor) expected to be embedded in superview")
+			return
+		}
+
+		let leftV = NSLayoutConstraint(item: self, attribute: .Leading, relatedBy: .Equal, toItem: anchor, attribute: .Leading, multiplier: 1.0, constant: 0)
+		let centerV = NSLayoutConstraint(item: self, attribute: .CenterX, relatedBy: .Equal, toItem: anchor, attribute: .CenterX, multiplier: 1.0, constant: 0)
+		let rightV = NSLayoutConstraint(item: self, attribute: .Trailing, relatedBy: .Equal, toItem: anchor, attribute: .Trailing, multiplier: 1.0, constant: 0)
+		let bottomV = NSLayoutConstraint(item: self, attribute: .Bottom, relatedBy: .Equal, toItem: anchor, attribute: .Top, multiplier: 1.0, constant: -padding)
+		let topV = NSLayoutConstraint(item: self, attribute: .Top, relatedBy: .Equal, toItem: anchor, attribute: .Bottom, multiplier: 1.0, constant: padding)
+		let leftH = NSLayoutConstraint(item: self, attribute: .Trailing, relatedBy: .Equal, toItem: anchor, attribute: .Leading, multiplier: 1.0, constant: -padding)
+		let rightH = NSLayoutConstraint(item: self, attribute: .Leading, relatedBy: .Equal, toItem: anchor, attribute: .Trailing, multiplier: 1.0, constant: padding)
+		let topH = NSLayoutConstraint(item: self, attribute: .Top, relatedBy: .Equal, toItem: anchor, attribute: .Top, multiplier: 1.0, constant: 0)
+		let centerH = NSLayoutConstraint(item: self, attribute: .CenterY, relatedBy: .Equal, toItem: anchor, attribute: .CenterY, multiplier: 1.0, constant: 0)
+		let bottomH = NSLayoutConstraint(item: self, attribute: .Bottom, relatedBy: .Equal, toItem: anchor, attribute: .Bottom, multiplier: 1.0, constant: 0)
+
+		switch align {
+		case .AboveMatchingLeft:
+			ourSuperView.addConstraints([leftV, bottomV])
+		case .AboveMatchingCenter:
+			ourSuperView.addConstraints([centerV, bottomV])
+		case .AboveMatchingRight:
+			ourSuperView.addConstraints([rightV, bottomV])
+		case .BelowMatchingLeft:
+			ourSuperView.addConstraints([leftV, topV])
+		case .BelowMatchingCenter:
+			ourSuperView.addConstraints([centerV, topV])
+		case .BelowMatchingRight:
+			ourSuperView.addConstraints([rightV, topV])
+		case .LeftMatchingTop:
+			ourSuperView.addConstraints([leftH, topH])
+		case .LeftMatchingCenter:
+			ourSuperView.addConstraints([leftH, centerH])
+		case .LeftMatchingBottom:
+			ourSuperView.addConstraints([leftH, bottomH])
+		case .RightMatchingTop:
+			ourSuperView.addConstraints([rightH, topH])
+		case .RightMatchingCenter:
+			ourSuperView.addConstraints([rightH, centerH])
+		case .RightMatchingBottom:
+			ourSuperView.addConstraints([rightH, bottomH])
+		}
+	}
 
 }
