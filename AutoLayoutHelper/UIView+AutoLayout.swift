@@ -201,5 +201,10 @@ public extension UIView {
 			ourSuperView.addConstraints([rightH, bottomH])
 		}
 	}
+	
+	public func applyAspectRatio(ratio: CGFloat) {
+		let aspect = NSLayoutConstraint(item: self, attribute: .Width, relatedBy: .Equal, toItem: self, attribute: .Height, multiplier: ratio, constant: 0)
+		addConstraint(aspect)
+	}
 
 }
