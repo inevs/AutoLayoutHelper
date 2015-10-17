@@ -206,5 +206,42 @@ public extension UIView {
 		let aspect = NSLayoutConstraint(item: self, attribute: .Width, relatedBy: .Equal, toItem: self, attribute: .Height, multiplier: ratio, constant: 0)
 		addConstraint(aspect)
 	}
+	
+	public func applySameHeigthToSubviews(views: [UIView]) {
+		if !haveSameSuperView(views) {
+			print ("expect to have the same superView")
+			return
+		}
+		
+		if let first = views.first {
+			for view in views {
+				if view != first {
+					addConstraint(NSLayoutConstraint(item: view, attribute: .Height, relatedBy: .Equal, toItem: first, attribute: .Height, multiplier: 1.0, constant: 0))
+				}
+			}
+		}
+
+	}
+	
+	public func applySameWidthToSubviews(views: [UIView]) {
+		if !haveSameSuperView(views) {
+			print ("expect to have the same superView")
+			return
+		}
+		
+		if let first = views.first {
+			for view in views {
+				if view != first {
+					addConstraint(NSLayoutConstraint(item: view, attribute: .Width, relatedBy: .Equal, toItem: first, attribute: .Width, multiplier: 1.0, constant: 0))
+				}
+			}
+		}
+		
+	}
+	
+	func haveSameSuperView(views: [UIView]) -> Bool {
+		let filtered = views.filter() { $0.superview == views.first?.superview }
+		return filtered.count == views.count
+	}
 
 }
