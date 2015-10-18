@@ -215,22 +215,53 @@ public extension UIView {
 		applySameWidthToSubviews(views)
 	}
 	
+	public func applyHeightsToSubviews(views: [UIView], withRelations relations: [Float]) {
+		if views.count != relations.count {
+			print("expect to have equal counts, views.count \(views.count) - relations.count \(relations.count)")
+			return
+		}
+
+		translatesAutoresizingMaskIntoConstraints = false
+		if let first = views.first {
+			for (index, view) in views.enumerate() {
+				if view != first {
+					let multiplier = CGFloat(relations[index]) / CGFloat(relations[0])
+					addConstraint(NSLayoutConstraint(item: view, attribute: .Height, relatedBy: .Equal, toItem: first, attribute: .Height, multiplier: multiplier, constant: 0))
+				}
+			}
+		}
+	}
+	
 	public func applySameHeigthToSubviews(views: [UIView]) {
 		if !haveSameSuperView(views) {
 			print ("expect to have the same superView")
 			return
 		}
 		
+		var relations: [Float] = []
+		for _ in 0..<views.count {
+			relations.append(1.0)
+		}
+		applyHeightsToSubviews(views, withRelations: relations)
+	}
+	
+	public func applyWidthsToSubviews(views: [UIView], withRelations relations: [Float]) {
+		if views.count != relations.count {
+			print("expect to have equal counts, views.count \(views.count) - relations.count \(relations.count)")
+			return
+		}
+		
 		translatesAutoresizingMaskIntoConstraints = false
 		if let first = views.first {
-			for view in views {
+			for (index, view) in views.enumerate() {
 				if view != first {
-					addConstraint(NSLayoutConstraint(item: view, attribute: .Height, relatedBy: .Equal, toItem: first, attribute: .Height, multiplier: 1.0, constant: 0))
+					let multiplier = CGFloat(relations[index]) / CGFloat(relations[0])
+					addConstraint(NSLayoutConstraint(item: view, attribute: .Width, relatedBy: .Equal, toItem: first, attribute: .Width, multiplier: multiplier, constant: 0))
 				}
 			}
 		}
-
 	}
+
 	
 	public func applySameWidthToSubviews(views: [UIView]) {
 		if !haveSameSuperView(views) {
@@ -238,15 +269,11 @@ public extension UIView {
 			return
 		}
 		
-		translatesAutoresizingMaskIntoConstraints = false
-		if let first = views.first {
-			for view in views {
-				if view != first {
-					addConstraint(NSLayoutConstraint(item: view, attribute: .Width, relatedBy: .Equal, toItem: first, attribute: .Width, multiplier: 1.0, constant: 0))
-				}
-			}
+		var relations: [Float] = []
+		for _ in 0..<views.count {
+			relations.append(1.0)
 		}
-		
+		applyWidthsToSubviews(views, withRelations: relations)
 	}
 	
 	func haveSameSuperView(views: [UIView]) -> Bool {
