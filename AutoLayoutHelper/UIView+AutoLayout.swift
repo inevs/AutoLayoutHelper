@@ -36,7 +36,8 @@ public extension UIView {
 			print("\(self) expected to be embedded in superview")
 			return
 		}
-
+		
+		translatesAutoresizingMaskIntoConstraints = false
 		let centerX = NSLayoutConstraint(item: self, attribute: .CenterX, relatedBy: .Equal, toItem: mySuperView, attribute: .CenterX, multiplier: 1.0, constant: 0)
 		let centerY = NSLayoutConstraint(item: self, attribute: .CenterY, relatedBy: .Equal, toItem: mySuperView, attribute: .CenterY, multiplier: 1.0, constant: 0)
 		mySuperView.addConstraints([centerX, centerY])
@@ -163,6 +164,7 @@ public extension UIView {
 			return
 		}
 
+		translatesAutoresizingMaskIntoConstraints = false
 		let leftV = NSLayoutConstraint(item: self, attribute: .Leading, relatedBy: .Equal, toItem: anchor, attribute: .Leading, multiplier: 1.0, constant: 0)
 		let centerV = NSLayoutConstraint(item: self, attribute: .CenterX, relatedBy: .Equal, toItem: anchor, attribute: .CenterX, multiplier: 1.0, constant: 0)
 		let rightV = NSLayoutConstraint(item: self, attribute: .Trailing, relatedBy: .Equal, toItem: anchor, attribute: .Trailing, multiplier: 1.0, constant: 0)
@@ -203,6 +205,7 @@ public extension UIView {
 	}
 	
 	public func applyAspectRatio(ratio: CGFloat) {
+		translatesAutoresizingMaskIntoConstraints = false
 		let aspect = NSLayoutConstraint(item: self, attribute: .Width, relatedBy: .Equal, toItem: self, attribute: .Height, multiplier: ratio, constant: 0)
 		addConstraint(aspect)
 	}
@@ -218,6 +221,7 @@ public extension UIView {
 			return
 		}
 		
+		translatesAutoresizingMaskIntoConstraints = false
 		if let first = views.first {
 			for view in views {
 				if view != first {
@@ -234,6 +238,7 @@ public extension UIView {
 			return
 		}
 		
+		translatesAutoresizingMaskIntoConstraints = false
 		if let first = views.first {
 			for view in views {
 				if view != first {
