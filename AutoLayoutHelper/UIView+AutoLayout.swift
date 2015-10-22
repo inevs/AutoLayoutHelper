@@ -148,7 +148,7 @@ public extension UIView {
 		}
 	}
 	
-	public func alignToAnchor(anchor: UIView, align: Align, padding: CGFloat) {
+	public func alignToAnchor(anchor: UIView, align: Align, padding: CGFloat = 0) {
 		guard let ourSuperView = superview else {
 			print("\(self) expected to be embedded in superview")
 			return
