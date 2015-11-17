@@ -23,8 +23,8 @@ class ViewController: UIViewController {
 //		anchorToEgde()
 //		anchorAndFillHorz()
 //		anchorAndFillVert()
-//		alignToAnchor()
-		applyWidths()
+		alignToAnchor()
+//		applyWidths()
 	}
 	
 	func fill() {
@@ -141,6 +141,10 @@ class ViewController: UIViewController {
 		let purple2 = viewWithColor(UIColor.purpleColor())
 		view.addSubview(purple2)
 		purple2.alignToAnchor(anchor, align: .RightMatchingBottom, padding: 5)
+		
+		let white = viewWithColor(UIColor.whiteColor())
+		view.addSubview(white)
+		white.alignToAnchor(anchor, align: .Center, padding: 0)
 	}
 	
 	func applyWidths() {

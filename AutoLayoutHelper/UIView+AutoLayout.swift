@@ -29,6 +29,7 @@ public extension UIView {
 		case RightMatchingTop
 		case RightMatchingCenter
 		case RightMatchingBottom
+		case Center
 	}
 	
 	public func centerInSuperView() {
@@ -201,6 +202,8 @@ public extension UIView {
 			ourSuperView.addConstraints([rightH, centerH])
 		case .RightMatchingBottom:
 			ourSuperView.addConstraints([rightH, bottomH])
+		case .Center:
+			ourSuperView.addConstraints([centerH, centerV])
 		}
 	}
 	
