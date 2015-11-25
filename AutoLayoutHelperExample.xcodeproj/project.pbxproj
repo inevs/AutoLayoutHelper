@@ -15,11 +15,11 @@
 		2654B72D1BCFF8C200AE2469 /* AutoLayoutHelperExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2654B72C1BCFF8C200AE2469 /* AutoLayoutHelperExampleTests.swift */; };
 		2654B7381BCFF8C200AE2469 /* AutoLayoutHelperExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2654B7371BCFF8C200AE2469 /* AutoLayoutHelperExampleUITests.swift */; };
 		2654B74D1BCFF8D400AE2469 /* AutoLayoutHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 2654B74C1BCFF8D400AE2469 /* AutoLayoutHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2654B7541BCFF8D400AE2469 /* AutoLayoutHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2654B74A1BCFF8D400AE2469 /* AutoLayoutHelper.framework */; settings = {ASSET_TAGS = (); }; };
+		2654B7541BCFF8D400AE2469 /* AutoLayoutHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2654B74A1BCFF8D400AE2469 /* AutoLayoutHelper.framework */; };
 		2654B75B1BCFF8D400AE2469 /* AutoLayoutHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2654B75A1BCFF8D400AE2469 /* AutoLayoutHelperTests.swift */; };
 		2654B75F1BCFF8D400AE2469 /* AutoLayoutHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2654B74A1BCFF8D400AE2469 /* AutoLayoutHelper.framework */; };
 		2654B7601BCFF8D400AE2469 /* AutoLayoutHelper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2654B74A1BCFF8D400AE2469 /* AutoLayoutHelper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2654B7691BCFF8E700AE2469 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2654B7681BCFF8E700AE2469 /* UIView+AutoLayout.swift */; settings = {ASSET_TAGS = (); }; };
+		2654B7691BCFF8E700AE2469 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2654B7681BCFF8E700AE2469 /* UIView+AutoLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -667,6 +667,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = AutoLayoutHelper/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.itagile.AutoLayoutHelper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -689,6 +690,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = AutoLayoutHelper/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.itagile.AutoLayoutHelper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -740,6 +742,7 @@
 				2654B73E1BCFF8C200AE2469 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2654B73F1BCFF8C200AE2469 /* Build configuration list for PBXNativeTarget "AutoLayoutHelperExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -748,6 +751,7 @@
 				2654B7411BCFF8C200AE2469 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2654B7421BCFF8C200AE2469 /* Build configuration list for PBXNativeTarget "AutoLayoutHelperExampleUITests" */ = {
 			isa = XCConfigurationList;
@@ -756,6 +760,7 @@
 				2654B7441BCFF8C200AE2469 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2654B7611BCFF8D400AE2469 /* Build configuration list for PBXNativeTarget "AutoLayoutHelper" */ = {
 			isa = XCConfigurationList;
@@ -764,6 +769,7 @@
 				2654B7631BCFF8D400AE2469 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2654B7651BCFF8D400AE2469 /* Build configuration list for PBXNativeTarget "AutoLayoutHelperTests" */ = {
 			isa = XCConfigurationList;
@@ -772,6 +778,7 @@
 				2654B7671BCFF8D400AE2469 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
